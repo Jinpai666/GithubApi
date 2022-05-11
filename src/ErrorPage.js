@@ -5,8 +5,6 @@ export default function ErrorPage(){
 
 
     return  (
-        <div>
-            page not found :(
-        </div>
+        <p>Ups... Nie znaleziono &#128534;</p>
     )
 }
