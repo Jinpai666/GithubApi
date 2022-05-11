@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import ResultTable from "./ResultTable";
+import React from "react";
+
 
 export default function ErrorPage(){
 
