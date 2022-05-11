@@ -1,0 +1,56 @@
+
+.main{
+    &__section{
+        display: flex;
+        flex-direction: column;
+    }
+    &__searchbox{
+        width: 50%;
+        background-color: transparent;
+        outline: none;
+        border: 1px solid #aaa;
+        padding: 1rem;
+        font-size: 1.6rem;
+        color: #fff;
+        margin: 2rem;
+    }
+    &__selection{
+        margin-top: 2rem;
+
+    }
+    &__pagination{
+        display: flex;
+        gap: .2rem;
+        margin-top: 2rem;
+
+    }
+    &__pagination-button{
+        border: 1px solid #000;
+        border-radius: .5rem;
+        padding: 1rem;
+        background-color: goldenrod;
+        color: #333333;
+        font-weight: bold;
+        font-size: 1.6rem;
+    }
+    &__pages{
+        display: none;
+
+    }
+
+    &__header{
+        font-size: 4rem;
+    }
+    &__table{
+        &-head{
+            background-color: #444;
+        }
+        &-row:nth-of-type(even){
+            background-color: #444;
+        }
+    }
+    &__table-cell{
+        border: 1px solid #aaa;
+        padding: 1rem;
+    }
+}

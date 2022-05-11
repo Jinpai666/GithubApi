@@ -1,13 +1,25 @@
 @import "reset";
+@import "mainPage";
+@import "header";
 
 
 html {
   font-size: 62.5%; /* font-size 1em = 10px on default browser settings */
 }
 body{
-  font-family: $font-base;
-  box-sizing: border-box;
-  position: relative;
+  font-family: "Arial", serif;
+  font-weight: normal;
+  background-color: #333;
+  color: #fff;
+  font-size: 1.6rem;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+
+}
+.container{
+  width: 1000px;
+
 }
 
 

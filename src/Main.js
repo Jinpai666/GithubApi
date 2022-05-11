@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from "react";
 import ResultTable from "./ResultTable";
+import "./scss/main.scss";
+import ReactPaginate from "react-paginate";
 
 export default function Main(){
 
@@ -9,6 +11,7 @@ export default function Main(){
     const [searchInput, setSearchInput] = useState('')
     const [database, setDatabase] = useState(null);
     const [order, setOrder] = useState("ascending");
+    const [clicked, setClicked] = useState("");
 
     useEffect(() => {
         async function getData() {
@@ -21,7 +24,8 @@ export default function Main(){
         searchValue && getData()
 
     }, [searchValue])
-    const sortNumbers = (column) => {
+
+    const sortNumbers = (column, event) => {
         if (order === "ascending") {
             const sorted = [...database].sort((a,b) =>
                 a[column] >= b[column]  ? 1 : -1
@@ -70,37 +74,71 @@ export default function Main(){
         }
     }
 
+//paginate
+
+    const [rowsPerPage, setRowsPerPage] = useState(5);
+    const [pageNr, setPageNr] = useState(0);
+    const pagesVisited = pageNr * rowsPerPage;
+    const pageCount = database ? Math.ceil(database.length / rowsPerPage) : 0;
+    const changePage = ({selected}) => {
+        setPageNr(selected);
+    }
     return  (
-        <>
-            {/*we could use it but due to limited requests it's not working well*/}
-            {/*<input*/}
-            {/*    onChange={(event) => setSearchValue(event.target.value)}*/}
-            {/*    placeholder="Search..."*/}
-            {/*/>*/}
+        <div  className={"main__section"}>
+            <h1 className={"main__header"}>&#x1F3E0; Strona Główna</h1>
             <input
+                className={"main__searchbox"}
                 placeholder="Search..."
                 onChange={event => {setSearchInput(event.target.value)}}
                 onKeyPress={event => {
                     if (event.key === 'Enter') {
                         setSearchValue(searchInput);
-                        console.log(searchValue)
                     }
                 }}
             />
-            <table>
-                <thead>
-                {order === "descending" ? <p>asc</p> : <p>desc</p>}
-                    <tr>
-                        <th onClick={() => sortNumbers('id')}>ID</th>
-                        <th onClick={() => sortName("name")}>Nazwa repozytorium</th>
-                        <th onClick={() => sortOwner()}>Właściciel</th>
-                        <th onClick={() => sortNumbers("stargazers_count")}>Ilość Gwiazdek</th>
-                        <th onClick={() => sortNumbers("created_at")}>Data utworzenia</th>
-                        <th>Ulubione</th>
+            {pageCount > 0 && <p> {`Strona ${pageNr + 1} z ${pageCount}`}</p>}
+            <table className={"main__table"}>
+                <thead >
+                    <tr className={"main__table-head"} >
+                        <th className={"main__table-cell"} onClick={database ? () => sortNumbers('id') : null}>ID</th>
+                        <th className={"main__table-cell"} onClick={database ? () => sortName("name") : null}>Nazwa repozytorium</th>
+                        <th className={"main__table-cell"} onClick={database ? () => sortOwner() : null}>Właściciel</th>
+                        <th className={"main__table-cell"} onClick={database ? () => sortNumbers("stargazers_count") : null}>Ilość Gwiazdek</th>
+                        <th className={"main__table-cell"} onClick={database ? () => sortNumbers("created_at") : null}>Data utworzenia</th>
+                        <th className={"main__table-cell"}>Ulubione</th>
                     </tr>
                 </thead>
-            <ResultTable tabledata={database}/>
+            <ResultTable
+                tableData={database}
+                pagesVisited={ pagesVisited }
+                rowsPerPage={ rowsPerPage }
+            />
             </table>
-        </>
+            <div className={"main__selection"}>
+                <label htmlFor="main__selection">Wyników na stronę</label>
+                <select name="main__selection" id="main__selection" onChange={(e) => {
+                    const rows = e.target.value
+                    setRowsPerPage(rows);
+                    setPageNr(0);
+                }} >
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="30">30</option>
+                </select>
+            </div>
+            <ReactPaginate
+                containerClassName="main__pagination"
+                previousClassName="main__pagination-button"
+                nextClassName="main__pagination-button"
+                pageLinkClassName="main__pages"
+                // activeClassName="main__pagination-active-button"
+                previousLabel="Poprzednia"
+                nextLabel="Następna"
+                onPageChange={changePage}
+                pageCount={pageCount}
+            />
+        </div>
     )
+
 }

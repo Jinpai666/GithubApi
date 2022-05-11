@@ -1,0 +1,18 @@
+.header{
+  padding: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+
+  &__link{
+      font-size: 2rem;
+      text-decoration: none;
+      color: #fff;
+      border: 1px solid #aaa;
+      padding: 1rem;
+      border-radius: 1rem ;
+    &:first-of-type{
+      margin-right: 2rem;
+    }
+    }
+
+}

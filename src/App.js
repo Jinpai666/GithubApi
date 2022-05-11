@@ -8,7 +8,7 @@ import DetailsPage from "./DetailsPage";
 
 function App() {
   return (
-      <>
+      <div className={"container"}>
           <Router>
               <Header/>
 
@@ -31,7 +31,7 @@ function App() {
                   />
               </Routes>
           </Router>
-      </>
+      </div>
 
 
 

@@ -5,9 +5,9 @@ export default function Header(){
 
 
     return  (
-       <nav>
-           <Link to="/">&#x1F3E0; Strona Główna</Link>
-           <Link to="favourites">&#x2B50; Ulubione</Link>
+       <nav className={"header"}>
+           <Link to="/" className={"header__link"} >&#x1F3E0; Strona Główna</Link>
+           <Link to="favourites" className={"header__link"} >&#x2B50; Ulubione</Link>
        </nav>
     )
 }
