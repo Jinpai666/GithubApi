@@ -8,27 +8,31 @@ import DetailsPage from "./DetailsPage";
 
 function App() {
   return (
-        <Router>
-          <Header/>
-          <Routes>
-            <Route
-                path="/"
-                element={<Main/>}
-            />
-            <Route
-                path="favourites"
-                element={<Favourites/>}
-            />
-            <Route
-                path="/favourites/:id"
-                element={<DetailsPage/>}
-            />
-              <Route
-                  path="*"
-                  element={<ErrorPage/>}
-              />
-          </Routes>
-        </Router>
+      <>
+          <Router>
+              <Header/>
+
+              <Routes>
+                  <Route
+                      path="/"
+                      element={<Main/>}
+                  />
+                  <Route
+                      path="favourites"
+                      element={<Favourites/>}
+                  />
+                  <Route
+                      path="/favourites/:id"
+                      element={<DetailsPage/>}
+                  />
+                  <Route
+                      path="*"
+                      element={<ErrorPage/>}
+                  />
+              </Routes>
+          </Router>
+      </>
+
 
 
   );
