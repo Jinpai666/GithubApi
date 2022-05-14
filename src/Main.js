@@ -50,10 +50,6 @@ export default function Main(){
                     rowsPerPage={ rowsPerPage }
                     searchValue={searchValue}
                 />
-            {/*<button onClick={()=>console.log(searchValue)}>test</button>*/}
-
-
-
             <Selection setRows={setRowsPerPage} setPage={setPageNr}/>
             <ReactPaginate
                 containerClassName="main__pagination"

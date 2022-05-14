@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const getDate = (date) => {
     return date.slice(0,10).split('-').reverse().join('.')
@@ -6,28 +6,43 @@ const getDate = (date) => {
 
 export default function ResultTable({database, pagesVisited, rowsPerPage, searchValue}){
 
-    const [clicked, setClicked] = useState("");
-    const [favourites, setFavourites] = useState(false);
+    const [favourites, setFavourites] = useState([]);
+    const [favouritesIdCollection, setFavouritesIdCollection] = useState([]);
 
-    async function test() {
-        const url = `https://api.github.com/search/repositories?q=${searchValue}`
-        const response = await fetch(url);
-        const responseJson = await response.json()
-        await setFavourites(responseJson.items);
-        await console.log(responseJson.items);
-    }
+    // // local storage
+
+    const saveToLocalStorage = (items) => {
+        localStorage.setItem('fav-repos', JSON.stringify(items))
+    };
+
+
+    useEffect(() => {
+      saveToLocalStorage(favourites)
+    },[favourites]);
+
+
     const addFavourite = (event) => {
         console.log('add');
-        const newList = [...favourites, ]
-        const likedId = event.target.parentElement.parentElement.firstChild.innerHTML;
-        console.log(likedId);
+        const targetId = event.target.parentElement.parentElement.firstChild.innerHTML;
+        const likedObj = database.filter(item => item.id === Number(targetId));
+        const newList = [...favourites, likedObj ]
+        const newCollection = [...favouritesIdCollection, Number(targetId)]
+        console.log(newList)
+
+        setFavourites(newList)
+        setFavouritesIdCollection(newCollection);
+        saveToLocalStorage(favourites);
     }
+
     const removeFavourite = (event) => {
-        console.log('remove')
-        const newList = [...favourites ]
-        const collectedID = event.target.parentElement.parentElement.firstChild.innerHTML
-        const filteredData = database.map(el => el.id === collectedID)
-        console.log(collectedID)
+        console.log('remove');
+        const targetId = event.target.parentElement.parentElement.firstChild.innerHTML;
+        const newList = favourites.filter(favourite => Number(favourite.id) !== Number(targetId));
+        const newCollection = favouritesIdCollection.filter(item => Number(item) !== Number(targetId) )
+        console.log(newList)
+        setFavourites(newList)
+        setFavouritesIdCollection(newCollection);
+        saveToLocalStorage(favourites);
     }
 
     return (
@@ -37,7 +52,6 @@ export default function ResultTable({database, pagesVisited, rowsPerPage, search
             {database && database != 0
                 // ? tableData.slice(pagesVisited, pagesVisited + rowsPerPage).map((item, idx) =>
                 ? database.slice(pagesVisited, Number(pagesVisited) + Number(rowsPerPage)).map((item, idx) =>
-
                     <tr  className={"main__table-row"}   key={idx} >
                         <td className={"main__table-cell"}>{item.id}</td>
                         <td className={"main__table-cell"}>{item.name}</td>
@@ -45,14 +59,10 @@ export default function ResultTable({database, pagesVisited, rowsPerPage, search
                         <td className={"main__table-cell"}>{item.stargazers_count}</td>
                         <td className={"main__table-cell"}>{getDate(item.created_at)}</td>
                         <td className={"main__table-cell"}>
-                            {/*{!favourites*/}
-                            {/*    ? <button onClick={addFavourite}>Like</button>*/}
-                            {/*    : <button onClick={removeFavourite}>Unlike</button>*/}
-                            {/*}*/}
-                                <button onClick={addFavourite}>
-                                    Like
-                                </button>
-
+                            {favouritesIdCollection && favouritesIdCollection.includes(item.id)
+                                ? <button key={idx} onClick={removeFavourite}>Unlike</button>
+                                : <button key={idx} onClick={addFavourite}>Like</button>
+                            }
                         </td>
                     </tr>
                 )
@@ -61,7 +71,10 @@ export default function ResultTable({database, pagesVisited, rowsPerPage, search
                 </tr>
             }
             </tbody>
-            <button onClick={() => test()} >test</button>
+            <button onClick={() => console.log(database)} >database</button>
+            <button onClick={() => console.log(favouritesIdCollection)} >favouritesIdCollection</button>
+            <button onClick={() => console.log(favourites)} >fav</button>
+
         </>
 
     )}
