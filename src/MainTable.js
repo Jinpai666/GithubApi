@@ -69,11 +69,8 @@ export default function MainTable({database, setDatabase, pagesVisited, rowsPerP
                 database={database}
                 pagesVisited={ pagesVisited }
                 rowsPerPage={ rowsPerPage }
-                searchValue={searchValue}
             />
             {/*<button onClick={() => console.log(favourites)} >test</button>*/}
-
-
         </table>
     )
 }

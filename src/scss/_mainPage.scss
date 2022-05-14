@@ -3,6 +3,7 @@
     &__section{
         display: flex;
         flex-direction: column;
+
     }
     &__searchbox{
         width: 50%;
@@ -16,15 +17,13 @@
     }
     &__selection{
         margin-top: 2rem;
-
     }
     &__pagination{
         display: flex;
         gap: .2rem;
         margin-top: 2rem;
-
     }
-    &__pagination-button{
+    &__paginationButton{
         border: 1px solid #000;
         border-radius: .5rem;
         padding: 1rem;
@@ -32,25 +31,53 @@
         color: #333333;
         font-weight: bold;
         font-size: 1.6rem;
+        cursor: pointer;
     }
     &__pages{
         display: none;
-
     }
-
     &__header{
         font-size: 4rem;
     }
     &__table{
-        &-head{
+        &Head{
             background-color: #444;
         }
-        &-row:nth-of-type(even){
+        &Row{
+            height: 10rem;
+        }
+        &Row:nth-of-type(even){
             background-color: #444;
         }
     }
-    &__table-cell{
+    &__userContainer{
+        display: flex;
+        align-items: center;
+    }
+    &__username{
+    }
+    &__tableCell{
         border: 1px solid #aaa;
         padding: 1rem;
+        vertical-align: middle;
+        line-height: 2.5rem;
+    }
+    &__avatar{
+        width: 3rem;
+        border-radius: 50%;
+        float: left;
+        margin-right: 1rem;
+    }
+    &__likeButton{
+        border: 1px solid #000;
+        border-radius: .5rem;
+        padding: .5rem;
+        inline-size: 15rem;
+        background-color: goldenrod;
+        color: #333333;
+        font-weight: bold;
+        font-size: 1.6rem;
+        cursor: pointer;
+
     }
 }

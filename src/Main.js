@@ -41,7 +41,7 @@ export default function Main(){
                     }
                 }}
             />
-            {pageCount > 0 && <p> {`Strona ${pageNr + 1} z ${pageCount}`}</p>}
+            {pageCount > 0 && <p className={"main__pageCount"}> {`Strona ${pageNr + 1} z ${pageCount}`}</p>}
 
                 <MainTable
                     database={database}
@@ -53,8 +53,8 @@ export default function Main(){
             <Selection setRows={setRowsPerPage} setPage={setPageNr}/>
             <ReactPaginate
                 containerClassName="main__pagination"
-                previousClassName="main__pagination-button"
-                nextClassName="main__pagination-button"
+                previousClassName="main__paginationButton"
+                nextClassName="main__paginationButton"
                 pageLinkClassName="main__pages"
                 // activeClassName="main__pagination-active-button"
                 previousLabel="Poprzednia"
