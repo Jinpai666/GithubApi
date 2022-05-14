@@ -1,30 +1,42 @@
 import React, { useState } from "react";
-import ReactPaginate from 'react-paginate';
 
 const getDate = (date) => {
     return date.slice(0,10).split('-').reverse().join('.')
 }
 
-export default function ResultTable({tableData, pagesVisited, rowsPerPage}){
-    const [favourite, setFavourite] = useState(false);
-    const addFavourite = (repo) => {
-        console.log('add')
-        const newList = [...favourite, repo ]
-        console.log(repo)
+export default function ResultTable({database, pagesVisited, rowsPerPage, searchValue}){
+
+    const [clicked, setClicked] = useState("");
+    const [favourites, setFavourites] = useState(false);
+
+    async function test() {
+        const url = `https://api.github.com/search/repositories?q=${searchValue}`
+        const response = await fetch(url);
+        const responseJson = await response.json()
+        await setFavourites(responseJson.items);
+        await console.log(responseJson.items);
+    }
+    const addFavourite = (event) => {
+        console.log('add');
+        const newList = [...favourites, ]
+        const likedId = event.target.parentElement.parentElement.firstChild.innerHTML;
+        console.log(likedId);
     }
     const removeFavourite = (event) => {
         console.log('remove')
-        const newList = [...favourite ]
+        const newList = [...favourites ]
         const collectedID = event.target.parentElement.parentElement.firstChild.innerHTML
-        const filteredData = tableData.map(el => el.id === collectedID)
+        const filteredData = database.map(el => el.id === collectedID)
         console.log(collectedID)
     }
 
     return (
         <>
             <tbody>
-            {tableData && tableData != 0
-                ? tableData.slice(pagesVisited, pagesVisited + rowsPerPage).map((item, idx) =>
+            {/* eslint-disable-next-line eqeqeq */}
+            {database && database != 0
+                // ? tableData.slice(pagesVisited, pagesVisited + rowsPerPage).map((item, idx) =>
+                ? database.slice(pagesVisited, Number(pagesVisited) + Number(rowsPerPage)).map((item, idx) =>
 
                     <tr  className={"main__table-row"}   key={idx} >
                         <td className={"main__table-cell"}>{item.id}</td>
@@ -33,10 +45,14 @@ export default function ResultTable({tableData, pagesVisited, rowsPerPage}){
                         <td className={"main__table-cell"}>{item.stargazers_count}</td>
                         <td className={"main__table-cell"}>{getDate(item.created_at)}</td>
                         <td className={"main__table-cell"}>
-                            {!favourite
-                                ? <button onClick={addFavourite}>Like</button>
-                                : <button onClick={removeFavourite}>Unlike</button>
-                            }
+                            {/*{!favourites*/}
+                            {/*    ? <button onClick={addFavourite}>Like</button>*/}
+                            {/*    : <button onClick={removeFavourite}>Unlike</button>*/}
+                            {/*}*/}
+                                <button onClick={addFavourite}>
+                                    Like
+                                </button>
+
                         </td>
                     </tr>
                 )
@@ -45,6 +61,7 @@ export default function ResultTable({tableData, pagesVisited, rowsPerPage}){
                 </tr>
             }
             </tbody>
+            <button onClick={() => test()} >test</button>
         </>
 
     )}
