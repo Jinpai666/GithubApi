@@ -5,44 +5,40 @@ const getDate = (date) => {
 }
 
 export default function ResultTable({database, pagesVisited, rowsPerPage, searchValue}){
+    const favsFromLocalStorage = JSON.parse(localStorage.getItem('fav-repos'));
+    const [favourites, setFavourites] = useState(favsFromLocalStorage && favsFromLocalStorage.length > 0 ? favsFromLocalStorage : []);
+    const idsFromLocalStorage = JSON.parse(localStorage.getItem('fav-ids'));
 
-    const [favourites, setFavourites] = useState([]);
-    const [favouritesIdCollection, setFavouritesIdCollection] = useState([]);
+    const [favouritesIdCollection, setFavouritesIdCollection] = useState(idsFromLocalStorage && idsFromLocalStorage.length > 0 ? idsFromLocalStorage : []);
 
-    // // local storage
-
-    const saveToLocalStorage = (items) => {
-        localStorage.setItem('fav-repos', JSON.stringify(items))
-    };
-
+//local storage
 
     useEffect(() => {
-      saveToLocalStorage(favourites)
-    },[favourites]);
+        localStorage.setItem('fav-repos', JSON.stringify(favourites))
+    },[favourites])
+    useEffect(() => {
+        localStorage.setItem('fav-ids', JSON.stringify(favouritesIdCollection))
+    },[favouritesIdCollection])
 
-
+//favourites functions
     const addFavourite = (event) => {
         console.log('add');
         const targetId = event.target.parentElement.parentElement.firstChild.innerHTML;
         const likedObj = database.filter(item => item.id === Number(targetId));
-        const newList = [...favourites, likedObj ]
+        const newList = [...favourites, ...likedObj ]
         const newCollection = [...favouritesIdCollection, Number(targetId)]
-        console.log(newList)
-
-        setFavourites(newList)
+        setFavourites(newList);
         setFavouritesIdCollection(newCollection);
-        saveToLocalStorage(favourites);
     }
 
     const removeFavourite = (event) => {
         console.log('remove');
         const targetId = event.target.parentElement.parentElement.firstChild.innerHTML;
-        const newList = favourites.filter(favourite => Number(favourite.id) !== Number(targetId));
-        const newCollection = favouritesIdCollection.filter(item => Number(item) !== Number(targetId) )
+        const newList = [...favourites].filter(favourite => Number(favourite.id) !== Number(targetId));
+        const newCollection = [...favouritesIdCollection].filter(item => Number(item) !== Number(targetId) )
         console.log(newList)
         setFavourites(newList)
         setFavouritesIdCollection(newCollection);
-        saveToLocalStorage(favourites);
     }
 
     return (
