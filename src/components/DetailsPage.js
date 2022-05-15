@@ -2,11 +2,12 @@ import React from "react";
 import { useParams } from "react-router-dom"
 
 export default function DetailsPage(){
-    let {id} = useParams();
+    const {id} = useParams();
 
     return  (
         <div>
-            this is details page for {id}
+            <p></p>
+            <p>this is details page for {id}</p>
         </div>
     )
 }

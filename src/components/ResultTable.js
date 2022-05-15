@@ -63,7 +63,7 @@ export default function ResultTable({database, pagesVisited, rowsPerPage}){
                         </td>
                         <td className={"main__tableCell"}>{item.stargazers_count}</td>
                         <td className={"main__tableCell"}>{getDate(item.created_at)}</td>
-                        <td className={"main__tableCell"}>
+                        <td className={"main__tableCell"} align={"middle"}>
                             {favouritesIdCollection && favouritesIdCollection.includes(item.id)
                                 ? <button key={idx} onClick={removeFavourite} className={"main__likeButton"} >Usuń z ulubionych</button>
                                 : <button key={idx} onClick={addFavourite} className={"main__likeButton"}>Dodaj do ulubionych</button>

@@ -54,15 +54,15 @@ export default function MainTable({database, setDatabase, pagesVisited, rowsPerP
     }
 
     return (
-        <table className={"main__table"}>
-            <thead >
-                <tr className={"main__table-head"} >
-                    <th className={"main__table-cell"} onClick={database ? () => sortNumbers('id') : null}>ID</th>
-                    <th className={"main__table-cell"} onClick={database ? () => sortName("name") : null}>Nazwa repozytorium</th>
-                    <th className={"main__table-cell"} onClick={database ? () => sortOwner() : null}>Właściciel</th>
-                    <th className={"main__table-cell"} onClick={database ? () => sortNumbers("stargazers_count") : null}>Ilość Gwiazdek</th>
-                    <th className={"main__table-cell"} onClick={database ? () => sortNumbers("created_at") : null}>Data utworzenia</th>
-                    <th className={"main__table-cell"}>Ulubione</th>
+        <table>
+            <thead className={"main__table"} >
+                <tr className={"main__tableHead"} >
+                    <th className={"main__tableCell"} onClick={database ? () => sortNumbers('id') : null}>ID</th>
+                    <th className={"main__tableCell"} onClick={database ? () => sortName("name") : null}>Nazwa repozytorium</th>
+                    <th className={"main__tableCell"} onClick={database ? () => sortOwner() : null}>Właściciel</th>
+                    <th className={"main__tableCell"} onClick={database ? () => sortNumbers("stargazers_count") : null}>Liczba gwiazdek</th>
+                    <th className={"main__tableCell"} onClick={database ? () => sortNumbers("created_at") : null}>Data utworzenia</th>
+                    <th className={"main__tableCell"}>Ulubione</th>
                 </tr>
             </thead>
             <ResultTable
@@ -70,7 +70,7 @@ export default function MainTable({database, setDatabase, pagesVisited, rowsPerP
                 pagesVisited={ pagesVisited }
                 rowsPerPage={ rowsPerPage }
             />
-            {/*<button onClick={() => console.log(favourites)} >test</button>*/}
+            {/*<button onClick={() => console.log(database.filter(el=>el.id == 10270250))} >test</button>*/}
         </table>
     )
 }
