@@ -3,7 +3,15 @@
     &__section{
         display: flex;
         flex-direction: column;
-
+    }
+    &__greeting{
+        display: flex;
+        height:30vw;
+        margin: auto;
+        justify-content: center;
+        align-items: center;
+        font-size: 8rem;
+        text-align: center;
     }
     &__searchbox{
         width: 50%;
@@ -16,7 +24,8 @@
         margin: 2rem;
     }
     &__selection{
-        margin-top: 2rem;
+        //margin-top: 2rem;
+        //background-color: transparent;
     }
     &__pagination{
         display: flex;
@@ -54,8 +63,11 @@
         display: flex;
         align-items: center;
     }
-    &__username{
+    &__repositoryName{
+        color: goldenrod;
+        font-weight: bold;
     }
+
     &__tableCell{
         border: 1px solid #aaa;
         padding: 1rem;

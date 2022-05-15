@@ -6,8 +6,9 @@ import MainTable from "./MainTable";
 
 export default function Main(){
 //general states
-    const [searchValue, setSearchValue] = useState('')
-    const [searchInput, setSearchInput] = useState('')
+    const searchValueFromSession = sessionStorage.getItem('searchResult');
+    const [searchValue, setSearchValue] = useState(searchValueFromSession ? searchValueFromSession : '');
+    const [searchInput, setSearchInput] = useState('');
     const [database, setDatabase] = useState(null);
 //paginate states
     const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -38,18 +39,21 @@ export default function Main(){
                 onKeyPress={event => {
                     if (event.key === 'Enter') {
                         setSearchValue(searchInput);
+                        sessionStorage.setItem('searchResult',searchInput);
                     }
                 }}
             />
             {pageCount > 0 && <p className={"main__pageCount"}> {`Strona ${pageNr + 1} z ${pageCount}`}</p>}
-
-                <MainTable
+            {searchValue
+                ? <MainTable
                     database={database}
                     setDatabase={setDatabase}
-                    pagesVisited={ pagesVisited }
-                    rowsPerPage={ rowsPerPage }
+                    pagesVisited={pagesVisited}
+                    rowsPerPage={rowsPerPage}
                     searchValue={searchValue}
                 />
+                : <h2 className={"main__greeting"}>Wpisz nazwę repozytorium żeby rozpocząć wyszukiwanie</h2>
+            }
             <Selection setRows={setRowsPerPage} setPage={setPageNr}/>
             <ReactPaginate
                 containerClassName="main__pagination"
@@ -62,6 +66,7 @@ export default function Main(){
                 onPageChange={changePage}
                 pageCount={pageCount}
             />
+            {/*<button onClick={()=> console.log(sessionStorage.getItem('searchResult'))}>test</button>*/}
         </div>
     )
 

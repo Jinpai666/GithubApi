@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {Link} from "react-router-dom";
 
 const getDate = (date) => {
     return date.slice(0,10).split('-').reverse().join('.')
@@ -48,7 +49,7 @@ export default function ResultTable({database, pagesVisited, rowsPerPage}){
                 ? database.slice(pagesVisited, Number(pagesVisited) + Number(rowsPerPage)).map((item, idx) =>
                     <tr  className={"main__tableRow"}   key={idx} >
                         <td className={"main__tableCell"}>{item.id}</td>
-                        <td className={"main__tableCell"}>{item.name}</td>
+                        <td className={"main__tableCell"}><Link className={"main__repositoryName"} to={`/favourites/:id${item.id}`}>{item.name}</Link></td>
                         <td className={"main__tableCell"}>
                             <div className={"main__userContainer"}>
                                 <img
@@ -69,16 +70,13 @@ export default function ResultTable({database, pagesVisited, rowsPerPage}){
                             }
                         </td>
                     </tr>
-                )
+                                )
                 : <tr>
                     <th>Brak wyników wyszukiwania</th>
+
                 </tr>
             }
             </tbody>
-            <button onClick={() => console.log(database)} >database</button>
-            <button onClick={() => console.log(favouritesIdCollection)} >favouritesIdCollection</button>
-            <button onClick={() => console.log(favourites)} >fav</button>
-
         </>
 
     )}
