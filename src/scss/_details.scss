@@ -1,0 +1,27 @@
+.details{
+  font-size: 2rem;
+  &__info{
+    margin: 8rem 0 5rem;
+  }
+  &__name{
+    font-size: 5rem;
+    font-weight: bold;
+    margin-right: 1rem;
+  }
+  &__avatar{
+    margin-left: 1rem;
+    width: 2rem;
+  }
+  &__description{
+    margin: 3rem 0;
+  }
+  &__link{
+    color: goldenrod;
+  }
+  &__stars{
+    margin-top: 1rem;
+  }
+  &__date{
+    margin-top: 1rem;
+  }
+}

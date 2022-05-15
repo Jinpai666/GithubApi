@@ -1,15 +1,33 @@
-import React, {useEffect, useState} from "react";
+import  React, {useEffect, useState} from "react";
 import "../scss/main.scss";
 import ReactPaginate from "react-paginate";
 import Selection from "./Selection";
 import MainTable from "./MainTable";
 
 export default function Main(){
-//general states
+//fetch data
     const searchValueFromSession = sessionStorage.getItem('searchResult');
-    const [searchValue, setSearchValue] = useState(searchValueFromSession ? searchValueFromSession : '');
-    const [searchInput, setSearchInput] = useState('');
     const [database, setDatabase] = useState(null);
+    const [searchValue, setSearchValue] = useState(searchValueFromSession ? searchValueFromSession : '');
+
+    useEffect(() => {
+        async function getData() {
+            const url = `https://api.github.com/search/repositories?q=${searchValue}`
+            const response = await fetch(url);
+            const responseJson = await response.json()
+            await setDatabase(responseJson.items);
+        }
+
+        searchValue && getData();
+    }, [searchValue])
+//transfer data to other tabs
+    useEffect(()=>{
+        localStorage.setItem('searchData', JSON.stringify(database));
+    },[database])
+
+//general states
+    const [searchInput, setSearchInput] = useState('');
+
 //paginate states
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [pageNr, setPageNr] = useState(0);
@@ -18,16 +36,6 @@ export default function Main(){
     const changePage = ({selected}) => {
         setPageNr(selected);
     }
-//fetch data
-    useEffect(() => {
-        async function getData() {
-            const url = `https://api.github.com/search/repositories?q=${searchValue}`
-            const response = await fetch(url);
-            const responseJson = await response.json()
-            await setDatabase(responseJson.items);
-        }
-        searchValue && getData()
-    }, [searchValue])
 
     return  (
         <div  className={"main__section"}>
@@ -66,7 +74,7 @@ export default function Main(){
                 onPageChange={changePage}
                 pageCount={pageCount}
             />
-            {/*<button onClick={()=> console.log(sessionStorage.getItem('searchResult'))}>test</button>*/}
+            <button onClick={()=> console.log(sessionStorage.getItem('searchResult'))}>test</button>
         </div>
     )
 
