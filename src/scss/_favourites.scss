@@ -1,0 +1,15 @@
+.favourites{
+  list-style: disc;
+  &__header{
+    font-size: 6rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    margin-top: 8rem;
+  }
+  &__item{
+    font-size: 2rem;
+    line-height: 4rem;
+    color: goldenrod;
+    margin: 2rem 0;
+  }
+}

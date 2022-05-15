@@ -12,7 +12,7 @@ export default function DetailsPage(){
     const repository = data && data.filter(repo => Number(repo.id) === Number(id.slice(3)))[0];
     return  (
         <>
-            {repository.length !== 0 && <div className={"details"}>
+            {repository && repository.length !== 0 && <div className={"details"}>
                 <div className={"details__info"}>
                     <span className={"details__name"}>{repository.name}</span>
                     by {repository.owner.login}
