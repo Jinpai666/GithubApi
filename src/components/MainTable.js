@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import ResultTable from "./ResultTable";
 
 export default function MainTable({database, setDatabase, pagesVisited, rowsPerPage}){
-    const [order, setOrder] = useState("");
+    const [order, setOrder] = useState("ascending");
 
 //sorting functions
     const sortNumbers = (column) => {
@@ -55,21 +55,25 @@ export default function MainTable({database, setDatabase, pagesVisited, rowsPerP
     }
 //handle clicks
    const [clicked,setClicked] = useState(null)
-    useEffect(() => {
-        setOrder('ascending')
-    },[clicked])
+
+
 
     const handleNumbersClick =  (event, sortBy) => {
         sortNumbers(sortBy);
         setClicked(event.currentTarget.id)
+        console.log(order)
     }
     const handleNameClick =  (event, sortBy) => {
         sortName(sortBy);
         setClicked(event.currentTarget.id)
+        console.log(order)
+
     }
     const handleOwnerClick =  (event, sortBy) => {
         sortOwner(sortBy);
         setClicked(event.currentTarget.id)
+        console.log(order)
+
     }
     return (    <table> <thead className={"main__table"} >
         <tr className={"main__tableHead"}  >
@@ -156,7 +160,6 @@ export default function MainTable({database, setDatabase, pagesVisited, rowsPerP
                 pagesVisited={ pagesVisited }
                 rowsPerPage={ rowsPerPage }
             />
-            <p>{order}</p>
         </table>
     )
 }
