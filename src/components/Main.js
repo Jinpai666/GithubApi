@@ -68,13 +68,11 @@ export default function Main(){
                 previousClassName="main__paginationButton"
                 nextClassName="main__paginationButton"
                 pageLinkClassName="main__pages"
-                // activeClassName="main__pagination-active-button"
                 previousLabel="Poprzednia"
                 nextLabel="Następna"
                 onPageChange={changePage}
                 pageCount={pageCount}
             />
-            <button onClick={()=> console.log(sessionStorage.getItem('searchResult'))}>test</button>
         </div>
     )
 

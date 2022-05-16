@@ -9,11 +9,9 @@ export default function ResultTable({database, pagesVisited, rowsPerPage}){
     const favsFromLocalStorage = JSON.parse(localStorage.getItem('fav-repos'));
     const [favourites, setFavourites] = useState(favsFromLocalStorage && favsFromLocalStorage.length > 0 ? favsFromLocalStorage : []);
     const idsFromLocalStorage = JSON.parse(localStorage.getItem('fav-ids'));
-
     const [favouritesIdCollection, setFavouritesIdCollection] = useState(idsFromLocalStorage && idsFromLocalStorage.length > 0 ? idsFromLocalStorage : []);
 
 //local storage
-
     useEffect(() => {
         localStorage.setItem('fav-repos', JSON.stringify(favourites))
     },[favourites])
@@ -31,7 +29,6 @@ export default function ResultTable({database, pagesVisited, rowsPerPage}){
         setFavourites(newList);
         setFavouritesIdCollection(newCollection);
     }
-
     const removeFavourite = (event) => {
         console.log('remove');
         const targetId = event.target.parentElement.parentElement.firstChild.innerHTML;
@@ -70,13 +67,11 @@ export default function ResultTable({database, pagesVisited, rowsPerPage}){
                             }
                         </td>
                     </tr>
-                                )
+                )
                 : <tr>
                     <th>Brak wyników wyszukiwania</th>
-
                 </tr>
             }
             </tbody>
         </>
-
     )}

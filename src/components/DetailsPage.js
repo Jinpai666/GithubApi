@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import { useParams } from "react-router-dom"
 import {Link} from "react-router-dom";
 
@@ -31,13 +31,6 @@ export default function DetailsPage(){
                 <p className={"details__stars"}>&#x2B50; {final.stargazers_count}</p>
                 <p className={"details__date"}>&#x1F382; {getDate(final.created_at)}</p>
             </div>}
-            <button onClick={()=>console.log(repository)}>data</button>
-            <button onClick={()=>console.log(repository)}>repository</button>
-            <button onClick={()=>console.log(favourites)}>favourites</button>
-            <button onClick={()=>console.log(combined)}>combined</button>
-            <button onClick={()=>console.log(filtered)}>filtered</button>
-            <button onClick={()=>console.log(final)}>final</button>
-
         </>
 
     )

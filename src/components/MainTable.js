@@ -1,7 +1,7 @@
 import React, {useState}  from "react";
 import ResultTable from "./ResultTable";
 
-export default function MainTable({database, setDatabase, pagesVisited, rowsPerPage, searchValue}){
+export default function MainTable({database, setDatabase, pagesVisited, rowsPerPage}){
     const [order, setOrder] = useState("ascending");
 //sorting functions
     const sortNumbers = (column) => {
@@ -70,7 +70,6 @@ export default function MainTable({database, setDatabase, pagesVisited, rowsPerP
                 pagesVisited={ pagesVisited }
                 rowsPerPage={ rowsPerPage }
             />
-            {/*<button onClick={() => console.log(database.filter(el=>el.id == 10270250))} >test</button>*/}
         </table>
     )
 }

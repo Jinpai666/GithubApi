@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function Selection({setRows, setPage}){
-
     return(
         <div className={"main__selection"}>
             <label htmlFor="selection">Wyników na stronę:</label>
