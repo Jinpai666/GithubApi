@@ -70,10 +70,11 @@
     &__tableHead{
         background-color: #444;
         cursor: pointer;
+        height: 8rem;
 
     }
     &__tableRow{
-        height: 10rem;
+        height: 8rem;
         &:nth-of-type(even){
             background-color: #444;
         }
