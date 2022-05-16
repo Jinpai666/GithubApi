@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import ResultTable from "./ResultTable";
 
 export default function MainTable({database, setDatabase, pagesVisited, rowsPerPage}){
