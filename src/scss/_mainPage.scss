@@ -1,18 +1,20 @@
-.main{
-    &__section{
+.main {
+    &__section {
         display: flex;
         flex-direction: column;
     }
-    &__greeting{
+
+    &__greeting {
         display: flex;
-        height:30vw;
+        height: 30vw;
         margin: auto;
         justify-content: center;
         align-items: center;
         font-size: 6rem;
         text-align: center;
     }
-    &__searchbox{
+
+    &__searchbox {
         width: 50%;
         background-color: transparent;
         outline: none;
@@ -23,11 +25,13 @@
         margin: 2rem;
         border-radius: .5rem;
     }
-    &__selection{
+
+    &__selection {
         margin-top: 2rem;
 
     }
-    &__selectionOptions{
+
+    &__selectionOptions {
         margin-left: 2rem;
         background-color: #333;
         color: #fff;
@@ -41,17 +45,20 @@
         //    color: red;
         //}
     }
-    &__pageCount{
+
+    &__pageCount {
         margin: 2rem 0;
         color: goldenrod;
         font-weight: bold;
     }
-    &__pagination{
+
+    &__pagination {
         display: flex;
         gap: .2rem;
         margin-top: 2rem;
     }
-    &__paginationButton{
+
+    &__paginationButton {
         border: 1px solid #000;
         border-radius: .5rem;
         padding: 1rem;
@@ -61,12 +68,15 @@
         font-size: 1.6rem;
         cursor: pointer;
     }
-    &__pages{
+
+    &__pages {
         display: none;
     }
-    &__header{
+
+    &__header {
         font-size: 4rem;
     }
+
     &__tableHead{
         background-color: #444;
         cursor: pointer;
@@ -94,16 +104,6 @@
         line-height: 2.5rem;
         text-align: left;
         width: 30rem;
-
-        &-top{
-            //width: 14rem;
-            //&:nth-of-type(1){
-            //    width: 12rem;
-            //}
-            //&:nth-of-type(2){
-            //    width: 20em;
-            //}
-        }
     }
     &__cellContainer{
         display: flex;
@@ -127,3 +127,63 @@
         cursor: pointer;
     }
 }
+
+@media
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+    /* Force table to not be like tables anymore */
+    .main{
+        &__table{
+            display: block;
+        }
+        &__tableHead {
+            display: block;
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+        &__resultTable{
+            display: block;
+        }
+        &__tableRow {
+            display: block;
+            border: 1px solid #ccc;
+            height: unset;
+            margin-top: 2rem;
+        }
+        &__tableCell {
+            /* Behave  like a "row" */
+            border: none;
+            border-bottom: 1px solid #ccc;
+            position: relative;
+            height: 5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            width: unset;
+            /*
+            Label the data
+            */
+            &:nth-of-type(1):before { content: "Id"; }
+            &:nth-of-type(2):before { content: "Nazwa repozytorium"; }
+            &:nth-of-type(3):before { content: "Właściciel"; }
+            &:nth-of-type(4):before { content: "Liczba gwiazdek"; }
+            &:nth-of-type(5):before { content: "Data utworzenia"; }
+        }
+        /* Hide table headers (but not display: none;, for accessibility) */
+        &__tableCell:before {
+            /* Now like a table header */
+            position: absolute;
+            /* Top/left values mimic padding */
+            top: 6px;
+            left: 6px;
+            width: 45%;
+            padding-right: 10px;
+            white-space: nowrap;
+        }
+    }
+}
+
+
+

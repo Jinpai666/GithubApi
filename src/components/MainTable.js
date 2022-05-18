@@ -75,85 +75,87 @@ export default function MainTable({database, setDatabase, pagesVisited, rowsPerP
         console.log(order)
 
     }
-    return (    <table> <thead className={"main__table"} >
-        <tr className={"main__tableHead"}  >
-            { clicked === 'id'
-                ? <th className={"main__tableCell-top main__tableCell"}
-                      id={"id"}
-                      onClick={database ? (event) =>
-                          handleNumbersClick(event,'id') : null}>
-                    <div className={"main__cellContainer"}>
-                        <span>ID</span>
-                        {order === 'ascending' ? <span>&#x1F53A;</span> : <span>&#x1F53B;</span>}
-                    </div>
-                </th>
-                : <th className={"main__tableCell-top main__tableCell"}
-                      id={"id"}
-                      onClick={database ? (event) =>
-                          handleNumbersClick(event,'id') : null}>
-                    ID</th>}
-            { clicked === 'name'
-                ? <th className={"main__tableCell-top main__tableCell"}
-                      id={"name"}
-                      onClick={database ? (event) =>
-                          handleNameClick(event) : null}>
-                    <div className={"main__cellContainer"}>
-                        <span>Nazwa repozytorium</span>
-                        {order === 'ascending' ? <span>&#x1F53A;</span> : <span>&#x1F53B;</span>}
-                    </div>
-                </th>
-                : <th className={"main__tableCell-top main__tableCell"}
-                      id={"name"}
-                      onClick={database ? (event) =>
-                          handleNameClick(event) : null}>
-                    Nazwa repozytorium</th>}
-            { clicked === 'owner'
-                ? <th className={"main__tableCell-top main__tableCell"}
-                                        id={"owner"}
-                                        onClick={database ? (event) =>
-                                            handleOwnerClick(event) : null}>
-                    <div className={"main__cellContainer"}>
-                        <span>Właściciel</span>
-                        {order === 'ascending' ? <span>&#x1F53A;</span> : <span>&#x1F53B;</span>}
-                    </div>
-                </th>
-                : <th className={"main__tableCell-top main__tableCell"}
-                      id={"owner"}
-                      onClick={database ? (event) =>
-                          handleOwnerClick(event) : null}>
-                    Właściciel</th>}
-            { clicked === 'stars'
-                ? <th className={"main__tableCell-top main__tableCell"}
-                                        id={"stars"}
-                                        onClick={database ? (event) =>
-                                            handleNumbersClick(event, 'stargazers_count') : null}>
-                    <div className={"main__cellContainer"}>
-                        <span>Liczba gwiazdek</span>
-                        {order === 'ascending' ? <span>&#x1F53A;</span> : <span>&#x1F53B;</span>}
-                    </div>
-                </th>
-                : <th className={"main__tableCell-top main__tableCell"}
-                      id={"stars"}
-                      onClick={database ? (event) =>
-                          handleNumbersClick(event, 'stargazers_count') : null}>
-                    Liczba gwiazdek</th>}
-            { clicked === 'date'
-                ? <th className={"main__tableCell-top main__tableCell"}
-                                        id={"date"}
-                                        onClick={database ? (event) =>
-                                            handleNumbersClick(event,'created_at') : null}>
-                    <div className={"main__cellContainer"}>
-                        <span>Data utworzenia</span>
-                        {order === 'ascending' ? <span>&#x1F53A;</span> : <span>&#x1F53B;</span>}
-                    </div>
-                </th>
-                : <th className={"main__tableCell-top main__tableCell"}
-                      id={"date"}
-                      onClick={database ? (event) =>
-                          handleNumbersClick(event,'created_at') : null}>
-                    Data utworzenia</th>}
-                <th className={"main__tableCell-top main__tableCell"} >Ulubione</th>
-            </tr>
+    return (
+        <table className={"main__table"}>
+            <thead className={"main__tableHead"} >
+                <tr   >
+                { clicked === 'id'
+                    ? <th className={"main__tableCell-top main__tableCell"}
+                          id={"id"}
+                          onClick={database ? (event) =>
+                              handleNumbersClick(event,'id') : null}>
+                        <div className={"main__cellContainer"}>
+                            <span>ID</span>
+                            {order === 'ascending' ? <span>&#x1F53A;</span> : <span>&#x1F53B;</span>}
+                        </div>
+                    </th>
+                    : <th className={"main__tableCell-top main__tableCell"}
+                          id={"id"}
+                          onClick={database ? (event) =>
+                              handleNumbersClick(event,'id') : null}>
+                        ID</th>}
+                { clicked === 'name'
+                    ? <th className={"main__tableCell-top main__tableCell"}
+                          id={"name"}
+                          onClick={database ? (event) =>
+                              handleNameClick(event) : null}>
+                        <div className={"main__cellContainer"}>
+                            <span>Nazwa repozytorium</span>
+                            {order === 'ascending' ? <span style={{display:"none"}}>&#x1F53A;</span> : <span>&#x1F53B;</span>}
+                        </div>
+                    </th>
+                    : <th className={"main__tableCell-top main__tableCell"}
+                          id={"name"}
+                          onClick={database ? (event) =>
+                              handleNameClick(event) : null}>
+                        Nazwa repozytorium</th>}
+                { clicked === 'owner'
+                    ? <th className={"main__tableCell-top main__tableCell"}
+                                            id={"owner"}
+                                            onClick={database ? (event) =>
+                                                handleOwnerClick(event) : null}>
+                        <div className={"main__cellContainer"}>
+                            <span>Właściciel</span>
+                            {order === 'ascending' ? <span>&#x1F53A;</span> : <span>&#x1F53B;</span>}
+                        </div>
+                    </th>
+                    : <th className={"main__tableCell-top main__tableCell"}
+                          id={"owner"}
+                          onClick={database ? (event) =>
+                              handleOwnerClick(event) : null}>
+                        Właściciel</th>}
+                { clicked === 'stars'
+                    ? <th className={"main__tableCell-top main__tableCell"}
+                                            id={"stars"}
+                                            onClick={database ? (event) =>
+                                                handleNumbersClick(event, 'stargazers_count') : null}>
+                        <div className={"main__cellContainer"}>
+                            <span>Liczba gwiazdek</span>
+                            {order === 'ascending' ? <span>&#x1F53A;</span> : <span>&#x1F53B;</span>}
+                        </div>
+                    </th>
+                    : <th className={"main__tableCell-top main__tableCell"}
+                          id={"stars"}
+                          onClick={database ? (event) =>
+                              handleNumbersClick(event, 'stargazers_count') : null}>
+                        Liczba gwiazdek</th>}
+                { clicked === 'date'
+                    ? <th className={"main__tableCell-top main__tableCell"}
+                                            id={"date"}
+                                            onClick={database ? (event) =>
+                                                handleNumbersClick(event,'created_at') : null}>
+                        <div className={"main__cellContainer"}>
+                            <span>Data utworzenia</span>
+                            {order === 'ascending' ? <span>&#x1F53A;</span> : <span>&#x1F53B;</span>}
+                        </div>
+                    </th>
+                    : <th className={"main__tableCell-top main__tableCell"}
+                          id={"date"}
+                          onClick={database ? (event) =>
+                              handleNumbersClick(event,'created_at') : null}>
+                        Data utworzenia</th>}
+                    <th className={"main__tableCell-top main__tableCell"} >Ulubione</th>
+                </tr>
             </thead>
             <ResultTable
                 database={database}

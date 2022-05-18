@@ -8,8 +8,9 @@ export default function DetailsPage(){
         return date.slice(0,10).split('-').reverse().join('.')
     }
     const {id} = useParams();
+    console.log(id)
     const data = JSON.parse(localStorage.getItem('searchData'));
-    const repository = data.filter(repo => repo.id === Number(id.slice(3)))[0];
+    const repository = data.filter(repo => repo.id === Number(id))[0];
     const favourites = JSON.parse(localStorage.getItem('fav-repos'));
     const combined = repository ? [...favourites,repository] : [...favourites];
     const filtered = combined ? combined.filter(repo => repo.id === Number(id.slice(3))) :  favourites;

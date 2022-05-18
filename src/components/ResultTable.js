@@ -41,7 +41,7 @@ export default function ResultTable({database, pagesVisited, rowsPerPage}){
 
     return (
         <>
-            <tbody>
+            <tbody className={"main__resultTable"}>
             {database && database.length !== 0
                 ? database.slice(pagesVisited, Number(pagesVisited) + Number(rowsPerPage)).map((item, idx) =>
                     <tr  className={"main__tableRow"}   key={idx} >

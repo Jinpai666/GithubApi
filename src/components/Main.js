@@ -1,5 +1,6 @@
 import  React, {useEffect, useState} from "react";
 import "../scss/main.scss";
+
 import ReactPaginate from "react-paginate";
 import Selection from "./Selection";
 import MainTable from "./MainTable";

@@ -14,5 +14,23 @@
       margin-right: 2rem;
     }
     }
+}
 
+@media
+only screen and (max-width: 600px),
+(min-device-width: 768px) and (max-device-width: 1024px){
+  .header{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    &__link{
+      text-align: center;
+      min-width:19rem;
+      &:first-of-type{
+        margin: unset;
+      }
+    }
+
+  }
 }
