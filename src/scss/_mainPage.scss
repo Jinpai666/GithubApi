@@ -142,6 +142,7 @@ only screen and (max-width: 760px),
             top: -9999px;
             left: -9999px;
         }
+
         &__resultTable{
             display: block;
         }
@@ -165,11 +166,11 @@ only screen and (max-width: 760px),
             /*
             Label the data
             */
-            &:nth-of-type(1):before { content: "Id"; }
-            &:nth-of-type(2):before { content: "Nazwa repozytorium"; }
-            &:nth-of-type(3):before { content: "Właściciel"; }
-            &:nth-of-type(4):before { content: "Liczba gwiazdek"; }
-            &:nth-of-type(5):before { content: "Data utworzenia"; }
+            //&:nth-of-type(1):before { content: "Id"; }
+            //&:nth-of-type(2):before { content: "Nazwa repozytorium"; }
+            //&:nth-of-type(3):before { content: "Właściciel"; }
+            //&:nth-of-type(4):before { content: "Liczba gwiazdek"; }
+            //&:nth-of-type(5):before { content: "Data utworzenia"; }
         }
         /* Hide table headers (but not display: none;, for accessibility) */
         &__tableCell:before {
