@@ -13,7 +13,7 @@ export default function DetailsPage(){
     const repository = data.filter(repo => repo.id === Number(id))[0];
     const favourites = JSON.parse(localStorage.getItem('fav-repos'));
     const combined = repository ? [...favourites,repository] : [...favourites];
-    const filtered = combined ? combined.filter(repo => repo.id === Number(id.slice(3))) :  favourites;
+    const filtered = combined ? combined.filter(repo => repo.id === Number(id)) :  favourites;
     const final = filtered[0];
     return  (
         <>
